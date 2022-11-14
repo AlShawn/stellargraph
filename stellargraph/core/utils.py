@@ -155,15 +155,19 @@ def normalized_laplacian(adj, symmetric=True):
 
 def calculate_laplacian(adj):
     print("change calculate_laplacian in /core/utils.py to np.float16 because float64 can't be computed out pf memory error")
-    print("change to sparse matrix")
+    print("change to sparse matrix,update shape")
     # D = np.diag(np.ravel(adj.sum(axis=0)) ** (-0.5))
     # adj = np.dot(D, np.dot(adj, D))
     # return adj
     a=np.ravel(adj.sum(axis=0)) ** (-0.5)
+    print(a.shape)
     D = scipy.sparse.csr_matrix(np.diag(a.astype(np.float16)).astype(np.float16))
+    print(D.shape)
     intermediate=scipy.sparse.csr_matrix(adj*D)
+    print(intermediate.shape)
     adj = D*intermediate
     return adj
+
 
 
 def rescale_laplacian(laplacian):
