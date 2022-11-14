@@ -17,7 +17,7 @@ import collections
 import scipy.sparse as sp
 from scipy.sparse.linalg import ArpackNoConvergence, eigsh
 import numpy as np
-
+import scipy
 
 def is_real_iterable(x):
     """
