@@ -160,7 +160,7 @@ def calculate_laplacian(adj):
     # return adj
     a=np.ravel(adj.sum(axis=0)) ** (-0.5)
     D = np.diag(a.astype(np.float16)).astype(np.float16)
-    adj = np.dot(D, np.dot(adj, D))
+    adj = np.matmul(D, np.matmul(adj, D))
     return adj
 
 
