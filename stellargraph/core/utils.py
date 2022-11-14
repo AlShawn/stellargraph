@@ -159,8 +159,9 @@ def calculate_laplacian(adj):
     # adj = np.dot(D, np.dot(adj, D))
     # return adj
     a=np.ravel(adj.sum(axis=0)) ** (-0.5)
-    D = np.diag(a.astype(np.float16)).astype(np.float16)
-    adj = np.matmul(D, np.matmul(adj, D))
+    D = scipy.sparse.csr_matrix(np.diag(a.astype(np.float16)).astype(np.float16))
+    intermediate=scipy.sparse.csr_matrix(adj*D)
+    adj = D*intermediate
     return adj
 
 
