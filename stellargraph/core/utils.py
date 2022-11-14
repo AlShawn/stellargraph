@@ -155,6 +155,7 @@ def normalized_laplacian(adj, symmetric=True):
 
 def calculate_laplacian(adj):
     print("change calculate_laplacian in /core/utils.py to np.float16 because float64 can't be computed out pf memory error")
+    print("change to sparse matrix")
     # D = np.diag(np.ravel(adj.sum(axis=0)) ** (-0.5))
     # adj = np.dot(D, np.dot(adj, D))
     # return adj
