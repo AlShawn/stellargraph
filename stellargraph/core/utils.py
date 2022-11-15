@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import collections
+from scipy import sparse
 import scipy.sparse as sp
 from scipy.sparse.linalg import ArpackNoConvergence, eigsh
 import numpy as np
