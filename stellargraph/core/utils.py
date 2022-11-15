@@ -154,18 +154,19 @@ def normalized_laplacian(adj, symmetric=True):
 
 
 def calculate_laplacian(adj):
-    print("change calculate_laplacian in gcn_lstm.py to row/col-wise ")
+
+    print("change calculate_laplacian in gcn_lstm.py to row/col-wise ,new")
     a=np.ravel(adj.sum(axis=0)) ** (-0.5)
     print(a.shape)
     a_reshape = a.reshape(1, -1)
     print(a_reshape.shape)
-    intermediate=adj * a_reshape[:, None]
+    print(adj.shape)
+    intermediate=adj.multiply(a_reshape[:, None])
     intermediate=intermediate.reshape((3,3))
     print(intermediate.shape)
     adj = intermediate*a[:, None]
     print(adj.shape)
     return adj
-
 
 
 def rescale_laplacian(laplacian):
