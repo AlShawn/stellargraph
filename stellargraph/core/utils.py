@@ -155,18 +155,18 @@ def normalized_laplacian(adj, symmetric=True):
 
 def calculate_laplacian(adj):
 
-    print("change calculate_laplacian in gcn_lstm.py to row/col-wise ,new")
-    a=np.ravel(adj.sum(axis=0)) ** (-0.5)
+    print("change calculate_laplacian in gcn_lstm.py to row/col-wise ")
+    a=sparse.csr_matrix(np.ravel(adj.sum(axis=0)) ** (-0.5))
     print(a.shape)
-    a_reshape = a.reshape(1, -1)
-    print(a_reshape.shape)
+    a_reshape = sparse.csr_matrix(a.reshape(-1, 1))
+    # print(a_reshape[:, None].shape)
     print(adj.shape)
-    intermediate=adj.multiply(a_reshape[:, None])
-    intermediate=intermediate.reshape((3,3))
-    print(intermediate.shape)
-    adj = intermediate*a[:, None]
+    intermediate=sparse.csr_matrix(adj.multiply(a_reshape))
+    # intermediate=intermediate.reshape((3,3))
+    # print(intermediate.shape)
+    adj = intermediate.multiply(a)
     print(adj.shape)
-    return adj
+    return adj.astype(np.float16)#.todense().astype(np.float16)
 
 
 def rescale_laplacian(laplacian):
